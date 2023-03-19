@@ -22,6 +22,7 @@ class Api::V1::StockLogsController < ApplicationController
       @item.increment!(:quantity, params[:quantity].to_i)
     else
       @item.decrement!(:quantity, params[:quantity].to_i)
+      @item.update(quantity: 0) if @item.quantity.negative?
     end
 
     if @stock_log.save
