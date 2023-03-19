@@ -1,5 +1,5 @@
 class Api::V1::StockLogsController < ApplicationController
-  before_action :set_stock_log, only: %i[ show update destroy ]
+  before_action :set_stock_log, only: %i[show update destroy]
 
   # GET /stock_logs
   def index
@@ -14,7 +14,6 @@ class Api::V1::StockLogsController < ApplicationController
 
   # POST /stock_logs
   def create
-
     @stock_log = StockLog.new(stock_log_params)
     @item = Stock.find(params[:stock_id])
 
@@ -32,7 +31,6 @@ class Api::V1::StockLogsController < ApplicationController
     end
   end
 
-
   # DELETE /stock_logs/1
   def destroy
     @stock_log.destroy
@@ -40,14 +38,13 @@ class Api::V1::StockLogsController < ApplicationController
 
   private
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_stock_log
-      @stock_log = StockLog.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_stock_log
+    @stock_log = StockLog.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def stock_log_params
-      params.require(:stock_log).permit(:stock_id, :stock_name, :quantity, :to_whom, :operation)
-    end
-
+  # Only allow a list of trusted parameters through.
+  def stock_log_params
+    params.require(:stock_log).permit(:stock_id, :stock_name, :quantity, :to_whom, :operation)
+  end
 end

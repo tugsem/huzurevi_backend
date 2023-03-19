@@ -4,7 +4,7 @@ class Stock < ApplicationRecord
   before_destroy :nullify_assosiated_stock_logs
 
   validates :name, presence: true, uniqueness: true, length: { minimum: 2 }
-  validates :quantity, presence: true, numericality: {only_integer: true}
+  validates :quantity, presence: true, numericality: { only_integer: true }
   validates :unit, presence: true
 
   def nullify_assosiated_stock_logs
