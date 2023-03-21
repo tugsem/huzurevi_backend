@@ -1,7 +1,7 @@
 version: '3'
 services:
   db:
-    image: postgres:13.10-alpine3.17
+    image: postgres:latest
     environment:
       POSTGRES_USER: myuser
       POSTGRES_PASSWORD: pass
@@ -23,7 +23,7 @@ services:
     environment:
       DATABASE_USERNAME: myuser
       DATABASE_PASSWORD: pass
-      DATABASE_HOST: db
+      DATABASE_HOST: postgres
       DATABASE_URL: postgres://myuser:pass@db:5432/huzurevi_backend_development
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -h db -p 5432"]
