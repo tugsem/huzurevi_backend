@@ -6,7 +6,6 @@ default: &default
   username: <%= ENV['DATABASE_USERNAME'] %>
   password: <%= ENV['DATABASE_PASSWORD'] %>
   host:  <%= ENV['DATABASE_HOST'] %>
-  socket: <%= ENV['SOCKET'] %>
 
 development:
   <<: *default
