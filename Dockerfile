@@ -34,4 +34,4 @@ RUN bundle exec bootsnap precompile --gemfile app/ lib/
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
-CMD ["chmod u+x bin/rails", "server", "-b", "0.0.0.0"]
+CMD ["bundle", "exec" "rails", "server", "-b", "0.0.0.0"]
