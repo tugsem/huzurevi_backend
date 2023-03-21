@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_03_17_171947) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_19_124914) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,7 +21,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_03_17_171947) do
     t.integer "operation"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "stock_id", null: false
+    t.bigint "stock_id"
     t.index ["stock_id"], name: "index_stock_logs_on_stock_id"
   end
 
@@ -33,5 +33,5 @@ ActiveRecord::Schema[7.1].define(version: 2023_03_17_171947) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "stock_logs", "stocks"
+  add_foreign_key "stock_logs", "stocks", on_delete: :nullify
 end
