@@ -8,6 +8,7 @@ RUN apt-get update && \
 # Rails app lives here
 WORKDIR /app
 
+ENV SECRET_KEY_BASE "eb118d99d71bd9d417ac3794f4e2c749fc63dc076db593ae64f84bd9505230d96d96c2bcba1d9c2c2fc6c6ecbd34e1ae50b5061af7c05c4ae42b34f7f87be489"
 # Install application gems
 COPY Gemfile Gemfile.lock ./
 RUN gem install bundler && bundle install
