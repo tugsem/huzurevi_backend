@@ -8,8 +8,6 @@ RUN apt-get update && \
 # Rails app lives here
 WORKDIR /app
 
-ENV PGUSER myuser
-
 # Install application gems
 COPY Gemfile Gemfile.lock ./
 RUN gem install bundler && bundle install
