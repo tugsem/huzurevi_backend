@@ -22,4 +22,4 @@ RUN bundle exec bootsnap precompile --gemfile app/ lib/
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
-CMD bundle exec rails db:migrate RAILS_ENV=production && bundle exec rails s -p 3000 -b 0.0.0.0
+CMD RAILS_ENV=production bundle exec rails db:migrate && export SECRET_KEY_BASE="eb118d99d71bd9d417ac3794f4e2c749fc63dc076db593ae64f84bd9505230d96d96c2bcba1d9c2c2fc6c6ecbd34e1ae50b5061af7c05c4ae42b34f7f87be489" && bundle exec RAILS_ENV=production rails s
