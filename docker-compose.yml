@@ -5,7 +5,7 @@ services:
     environment:
       POSTGRES_USER: myuser
       POSTGRES_PASSWORD: pass
-      POSTGRES_DB: huzurevi_backend_development
+      POSTGRES_DB: huzurevi_backend_production
     expose:
       - 5432:5432
     volumes:
@@ -20,11 +20,11 @@ services:
     volumes:
       - .:/app
     environment:
-      RAILS_ENV: development
+      RAILS_ENV: production
       DATABASE_USERNAME: myuser
       DATABASE_PASSWORD: pass
       DATABASE_HOST: postgres
-      DATABASE_URL: postgres://myuser:pass@db:5432/huzurevi_backend_development
+      DATABASE_URL: postgres://myuser:pass@db:5432/huzurevi_backend_production
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -h db -p 5432"]
       interval: 10s

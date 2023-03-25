@@ -17,6 +17,4 @@ test:
 
 production:
   <<: *default
-  database: <%= ENV['PRODUCTION_DATABASE'] %>
-  username: <%= ENV['DATABASE_USERNAME'] %>
-  password: <%= ENV['DATABASE_PASSWORD'] %>
+  database: huzurevi_backend_development
