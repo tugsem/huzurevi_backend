@@ -18,6 +18,7 @@ COPY . .
 # Precompile bootsnap code for faster boot times
 RUN bundle exec bootsnap precompile --gemfile app/ lib/
 
+ENV RAILS_ENV production
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
-CMD bundle exec rails db:migrate RAILS_ENV=production && bundle exec RAILS_ENV=production rails s -p 3000 -b 0.0.0.0
+CMD bundle exec rails db:migrate && bundle exec rails s -p 3000 -b 0.0.0.0
