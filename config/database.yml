@@ -17,4 +17,4 @@ test:
 
 production:
   <<: *default
-  database: huzurevi_backend_development
+  database: huzurevi_backend_production
