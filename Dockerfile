@@ -17,9 +17,6 @@ RUN gem install bundler && bundle install
 # Copy application code
 COPY . .
 
-# Precompile bootsnap code for faster boot times
-RUN bundle exec bootsnap precompile --gemfile app/ lib/
-
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
-CMD bundle exec rails db:migrate RAILS_ENV=development && bundle exec rails s -p 3000 -b 0.0.0.0
+CMD  ["bundle", "exec", "rails", "s", "-p", "3000", "-b", "0.0.0.0"]
