@@ -1,6 +1,6 @@
 class Api::V1::StocksController < ApplicationController
   before_action :set_stock, only: %i[show update destroy]
-
+  before_action :is_authorized, only: [:create, :update, :destroy]
   # GET /stocks
   def index
     @stocks = Stock.all.order(updated_at: :DESC)

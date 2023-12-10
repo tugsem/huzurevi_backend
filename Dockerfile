@@ -1,5 +1,5 @@
 # Make sure it matches the Ruby version in .ruby-version and Gemfile
-FROM ruby:3.1.2
+FROM ruby:3.2.2
 
 # Install PostgreSQL client libraries and headers
 RUN apt-get update && \

@@ -1,6 +1,6 @@
 class Api::V1::StockLogsController < ApplicationController
   before_action :set_stock_log, only: %i[show update destroy]
-
+  before_action :is_authorized, only: [:create, :destroy]
   # GET /stock_logs
   def index
     @stock_logs = StockLog.all.order(updated_at: :DESC)

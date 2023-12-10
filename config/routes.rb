@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
+resources :users, only: [:index, :destroy]
   namespace :api do
     namespace :v1 do
       resources :stocks, :stock_logs
     end
   end
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
+  get '/me', to: 'users#show'
+  post '/signup', to: 'users#create'
+  post '/login', to: 'sessions#create'
+  delete '/logout',  to: 'sessions#destroy'
 end
