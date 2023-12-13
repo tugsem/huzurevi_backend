@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  skip_before_action :authenticate_user, only: [:create]
+  skip_before_action :authenticate_user
   def create#login
     #find the user using the params username
     #authenticate the user with the given password
@@ -8,11 +8,12 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id # logs user in, keep track of user
       render json: user, status: :ok
     else
-      render json: "invalid credentials", status: :unauthorized
+      render "invalid credentials", status: :unauthorized
     end
   end
 
   def destroy#logout
     session.delete :user_id
+    render "logged out", status: :ok
   end
 end
