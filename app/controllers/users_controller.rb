@@ -17,6 +17,9 @@ class UsersController < ApplicationController
   def create
     user = User.create(user_params)
     if user.valid?
+      if user === User.first
+        user.update("admin": true)
+      end
       session[:user_id] = user.id # logs user in
       render json: user, status: :created
     else
