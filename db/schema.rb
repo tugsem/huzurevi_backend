@@ -10,9 +10,57 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_09_170941) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_05_185941) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "medication_records", force: :cascade do |t|
+    t.integer "patient_id"
+    t.string "medication_name"
+    t.string "dosage"
+    t.datetime "administration_time"
+    t.integer "nurse_id"
+    t.text "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["nurse_id"], name: "index_medication_records_on_nurse_id"
+    t.index ["patient_id"], name: "index_medication_records_on_patient_id"
+  end
+
+  create_table "nurses", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.date "date_of_birth"
+    t.string "gender"
+    t.string "contact_number"
+    t.string "email"
+    t.string "username"
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_nurses_on_email"
+  end
+
+  create_table "patients", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.date "date_of_birth"
+    t.string "contact_number"
+    t.string "email"
+    t.string "gender"
+    t.string "address"
+    t.text "medical_history"
+    t.text "medications"
+    t.integer "assigned_nurse_id"
+    t.integer "room_number"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "nurses_id"
+    t.index ["assigned_nurse_id"], name: "index_patients_on_assigned_nurse_id"
+    t.index ["email"], name: "index_patients_on_email"
+    t.index ["nurses_id"], name: "index_patients_on_nurses_id"
+  end
 
   create_table "stock_logs", force: :cascade do |t|
     t.string "stock_name"
@@ -41,5 +89,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_09_170941) do
     t.boolean "admin", default: false
   end
 
+  add_foreign_key "patients", "nurses", column: "nurses_id"
   add_foreign_key "stock_logs", "stocks", on_delete: :nullify
 end
