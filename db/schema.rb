@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_05_185941) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_19_191331) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,7 +20,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_05_185941) do
     t.string "dosage"
     t.datetime "administration_time"
     t.integer "nurse_id"
-    t.text "notes"
+    t.text "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["nurse_id"], name: "index_medication_records_on_nurse_id"

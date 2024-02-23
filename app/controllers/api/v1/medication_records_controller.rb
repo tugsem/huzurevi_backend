@@ -18,7 +18,7 @@ class Api::V1::MedicationRecordsController < ApplicationController
     @medication_record = MedicationRecord.new(medication_record_params)
 
     if @medication_record.save
-      render json: @medication_record, status: :created, location: @medication_record
+      render json: @medication_record, status: :created
     else
       render json: @medication_record.errors, status: :unprocessable_entity
     end
@@ -46,6 +46,6 @@ class Api::V1::MedicationRecordsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def medication_record_params
-      params.require(:medication_record).permit(:medication_name,)
+      params.require(:medication_record).permit(:patient_id, :nurse_id, :medication_name, :dosage, :administration_time, :note)
     end
 end

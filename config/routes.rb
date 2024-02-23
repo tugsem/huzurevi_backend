@@ -3,13 +3,10 @@ resources :users, only: [:index, :destroy]
 
   namespace :api do
     namespace :v1 do
-      resources :nurses do
-        resources :medication_records
-      end
       resources :patients do
         resources :medication_records
       end
-        resources :stocks, :stock_logs
+        resources :stocks, :stock_logs, :nurses
     end
   end
 
