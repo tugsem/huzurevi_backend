@@ -20,7 +20,7 @@ class Api::V1::MedicationRecordsController < ApplicationController
     if @medication_record.save
       render json: @medication_record, status: :created
     else
-      render json: @medication_record.errors, status: :unprocessable_entity
+      render json: { errors: @medication_record.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
