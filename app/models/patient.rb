@@ -1,6 +1,7 @@
 class Patient < ApplicationRecord
   belongs_to :nurse, foreign_key: 'assigned_nurse_id', optional: true
   has_many :medication_records
+  has_many :notes
 
   validates :first_name, presence: true
   validates :last_name, presence: true

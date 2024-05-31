@@ -1,5 +1,5 @@
 class Api::V1::PatientsController < ApplicationController
-  before_action :set_patient, only: %i[ show update destroy ]
+  before_action :set_patient, only: %i[ show update destroy recent_notes create_note ]
   include NameCapitalization
   # GET /patients
   def index
@@ -37,6 +37,20 @@ class Api::V1::PatientsController < ApplicationController
     @patient.destroy!
   end
 
+  def recent_notes
+    @recent_notes = @patient.notes.where('created_at >= ?', 2.weeks.ago)
+    render json: @recent_notes
+  end
+
+  def create_note
+    @note = @patient.notes.new(note_params)
+    if @note.save
+      render json: @note
+    else
+      render json: @note.errors, status: :unprocessable_entity
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_patient
@@ -60,4 +74,9 @@ class Api::V1::PatientsController < ApplicationController
         :status
       )
   end
+
+  def note_params
+    params.require(:note).permit(:note, :patient_id, :nurse_id)
+  end
+
 end
