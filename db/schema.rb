@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_31_144849) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_10_131758) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -29,11 +29,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_31_144849) do
   create_table "notes", force: :cascade do |t|
     t.text "note"
     t.bigint "patient_id", null: false
-    t.bigint "nurse_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["nurse_id"], name: "index_notes_on_nurse_id"
     t.index ["patient_id"], name: "index_notes_on_patient_id"
+    t.index ["user_id"], name: "index_notes_on_user_id"
   end
 
   create_table "nurses", force: :cascade do |t|
@@ -98,8 +98,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_31_144849) do
     t.boolean "admin", default: false
   end
 
-  add_foreign_key "notes", "nurses"
   add_foreign_key "notes", "patients"
+  add_foreign_key "notes", "users"
   add_foreign_key "patients", "nurses", column: "nurses_id"
   add_foreign_key "stock_logs", "stocks", on_delete: :nullify
 end

@@ -3,7 +3,7 @@ class Api::V1::MedicationRecordsController < ApplicationController
 
   # GET /medication_records
   def index
-    @medication_records = MedicationRecord.all
+    @medication_records = MedicationRecord.order(created_at: :desc)
 
     render json: @medication_records
   end

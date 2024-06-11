@@ -5,8 +5,8 @@ resources :users, only: [:index, :destroy]
     namespace :v1 do
       resources :patients do
         member do
-          get 'notes', to: 'patients#recent_notes'
-          post 'notes', to: 'patients#create_note'
+          get 'notes', to: 'notes#recent_notes'
+          post 'notes', to: 'notes#create_note'
         end
         resources :medication_records
       end
