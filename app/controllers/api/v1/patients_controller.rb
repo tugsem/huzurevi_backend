@@ -3,7 +3,7 @@ class Api::V1::PatientsController < ApplicationController
   include NameCapitalization
   # GET /patients
   def index
-    @patients = Patient.all
+    @patients = Patient.includes(:notes)
 
     render json: @patients
   end
