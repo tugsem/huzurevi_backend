@@ -1,6 +1,12 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
+
+  allowed_hosts = ENV.fetch("ALLOWED_HOSTS", "").split(",")
+  allowed_hosts.each do |host|
+    config.hosts << host
+  end
+  
   # Settings specified here will take precedence over those in config/application.rb.
   config.hosts << "huzurevibackend-production.up.railway.app"
 # Code is not reloaded between requests.

@@ -1,8 +1,13 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
+  Rails.application.config.hosts = [
+  IPAddr.new("0.0.0.0/0"),        # All IPv4 addresses.
+  IPAddr.new("::/0"),             # All IPv6 addresses.
+  "localhost",                    # The localhost reserved domain.
+  ENV["RAILS_DEVELOPMENT_HOSTS"]  # Additional comma-separated hosts for development.
+  ]
   # Settings specified here will take precedence over those in config/application.rb.
-  config.hosts << "huzurevibackend-develop.up.railway.app"
   # In the development environment your application's code is reloaded any time
   # it changes. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
