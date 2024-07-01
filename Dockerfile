@@ -19,4 +19,5 @@ COPY . .
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
+RUN bundle exec rails db:migrate
 CMD  ["bundle", "exec", "rails", "s", "-p", "3000", "-b", "0.0.0.0"]
